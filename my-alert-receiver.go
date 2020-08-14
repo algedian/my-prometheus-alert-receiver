@@ -57,7 +57,7 @@ func webhook(w http.ResponseWriter, r *http.Request) {
   } else if data.Status == "firing" {
      color = "red"
      title = "(Click me!) Please check ALERTMANAGER and silence it if you need."
-     titlelink = "http://10.162.161.208:8135"
+     titlelink = "http://ALERT_MANAGER:PORT"
   }
 
   var attachments []Attachment
@@ -95,7 +95,7 @@ func sendToDooray(status string, atts []Attachment) {
 
   reqBody := bytes.NewBufferString(myjson)
   fmt.Println(reqBody)
-  resp, err := http.Post("https://hook.dooray.com/services/1387695619080878080/2778111565359410631/p6eZACb3Tm-sTBV6wiHI9g", "application/json", reqBody)
+  resp, err := http.Post("DOORAY_LINK", "application/json", reqBody)
 
   if err != nil {
     panic(err)
